@@ -1,0 +1,133 @@
+✅ 1. What we have so far
+
+You already built a working playable core loop:
+
+Backend:
+
+✔ Register users
+✔ Add habits
+✔ Complete habits (coins + streak)
+✔ List all habits
+✔ Leaderboard
+✔ Database stores everything
+✔ Fully working API
+
+Frontend:
+
+✔ Login page
+✔ Dashboard
+✔ Fetch & show all habits
+✔ Add habit
+✔ Complete habit
+✔ UI auto-updates after actions
+
+This is a real playable prototype.
+
+🎮 2. What Features You Should Add NEXT (Roadmap)
+
+Here is the best possible next steps in order of importance, based on game design, player experience, and app stability.
+
+⭐ NEXT FEATURE 1 — Better Habit Display + Coins/Streak UI
+
+Right now:
+
+You complete habit → reward comes (alert message)
+
+But the UI does not show total coins
+
+No visual reward
+
+No streak indicators (🔥 flames, 🔥 icons, etc.)
+
+What we should add:
+
+✔ Show total coins at top
+✔ Show total streaks per habit visually
+✔ Add streak flames animation
+✔ Add coin animation when habit completed
+✔ Make habit list look better
+
+This improves player experience immediately.
+
+⭐ NEXT FEATURE 2 — Negative Habits Support (Penalties)
+
+Add bad habits behavior:
+
+Completing a bad habit = penalty
+
+Coins decrease
+
+Streak breaks
+
+Maybe unlock “punishment missions”
+
+This makes Habit Arena more realistic.
+
+⭐ NEXT FEATURE 3 — Daily Reset Logic
+
+A real habit game must:
+
+Reset daily status at midnight
+
+Break streak if missed a day
+
+Award “perfect day” bonus
+
+This turns it into real habit building, not clicking.
+
+⭐ NEXT FEATURE 4 — Leaderboard UI
+
+Right now leaderboard is API-only.
+
+We need:
+
+✔ leaderboard.html
+✔ sorted players by coins
+✔ icons + ranks (gold, silver, bronze)
+✔ real-time updates later
+
+⭐ NEXT FEATURE 5 — Login System (Proper Auth)
+
+Right now login is:
+
+username only
+
+instant registration
+
+Eventually we need:
+
+✔ JWT login
+or
+✔ Supabase Auth integration
+
+But this can wait until later.
+
+⭐ NEXT FEATURE 6 — Shop + Troops
+
+Players can buy:
+
+Troops
+
+Skins
+
+XP Boosters
+
+Streak Protection
+
+Special Items
+
+This makes it feel like a game, not just habit tracker.
+
+⭐ NEXT FEATURE 7 — Challenge Arena Multiplayer
+
+This is where HABIT ARENA becomes special:
+
+Create challenge (e.g., 7-day running)
+
+Other players join
+
+Real-time scoreboard
+
+Winner gets trophies
+
+This will be the hardest part — but also the most fun.
