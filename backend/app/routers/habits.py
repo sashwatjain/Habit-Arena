@@ -1,3 +1,4 @@
+from http.client import HTTPException
 from fastapi import APIRouter
 from sqlmodel import Session, select
 from ..database import engine
@@ -48,7 +49,8 @@ def complete_habit(habit_id: int):
         habit.last_completed = today
 
         # Calculate reward
-        reward = calculate_points(habit.streak)
+        reward = calculate_points(habit.type, habit.streak)
+
         user.coins += reward
 
         # Save changes
@@ -74,3 +76,31 @@ def list_habits(username: str):
         habits = session.exec(select(Habit).where(Habit.user_id == user.id)).all()
 
         return {"habits": habits}
+
+
+@router.put("/edit")
+def edit_habit(habit_id: int, new_name: str):
+    with Session(engine) as session:
+        habit = session.get(Habit, habit_id)
+        if not habit:
+            raise HTTPException(status_code=404, detail="Habit not found")
+
+        habit.name = new_name
+        session.add(habit)
+        session.commit()
+        session.refresh(habit)
+
+        return {"message": "Habit updated", "habit": habit}
+
+
+@router.delete("/delete")
+def delete_habit(habit_id: int):
+    with Session(engine) as session:
+        habit = session.get(Habit, habit_id)
+        if not habit:
+            raise HTTPException(status_code=404, detail="Habit not found")
+
+        session.delete(habit)
+        session.commit()
+
+        return {"message": "Habit deleted"}

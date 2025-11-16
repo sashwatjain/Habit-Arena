@@ -207,8 +207,8 @@ uvicorn app.main:app --reload
 ### Open UI
 
 ```
-http://127.0.0.1:3000/login.html
-http://127.0.0.1:3000/dashboard.html
+http://127.0.0.1:8000/login.html
+http://127.0.0.1:8000/dashboard.html
 ```
 
 ---

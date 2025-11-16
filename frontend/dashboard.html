@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <title>Habit Arena - Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -8,13 +10,18 @@
 
 <div class="container">
     <h1>Welcome, <span id="usernameDisplay"></span></h1>
+    <div id="coinArea" style="text-align:center;">
+    <img id="coinIcon" src="assets/coin.svg" class="coin-icon">
+    <div class="coin-count" id="coinCount">0</div>
+    </div>
+
 
     <h2>Your Habits</h2>
     <div id="habitList"></div>
 
     <h2>Add New Habit</h2>
-    <input id="habitNameInput" type="text" placeholder="Habit name">
-    <select id="habitTypeSelect">
+        <input id="habitInput" type="text" placeholder="Habit name">
+        <select id="habitType">
         <option value="good">Good Habit</option>
         <option value="bad">Bad Habit</option>
     </select>

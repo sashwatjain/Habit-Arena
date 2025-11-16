@@ -18,3 +18,16 @@ def register_user(username: str):
         session.refresh(new_user)
         return {"message": "User registered", "user": new_user}
 
+# ⭐ NEW ENDPOINT ⭐
+@router.get("/info")
+def get_user_info(username: str):
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.username == username)).first()
+        if not user:
+            return {"error": "User not found"}
+
+        return {
+            "id": user.id,
+            "username": user.username,
+            "coins": user.coins
+        }

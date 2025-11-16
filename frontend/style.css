@@ -1,9 +1,51 @@
 body {
-    font-family: Arial;
-    background: #111;
-    color: white;
     margin: 0;
+    font-family: Arial, sans-serif;
+    color: #eaeaea;
+
+    /* MULTI-COLOR DARK AURORA BACKGROUND */
+    background: linear-gradient(135deg,
+        #0d0d1a 0%,
+        #1a1a34 20%,
+        #2a1f4d 40%,
+        #14233c 60%,
+        #10324a 80%,
+        #271739 100%
+    );
+
+    background-size: 600% 600%;
+    animation: auroraFlow 28s ease-in-out infinite;
+
+    transition: background 3s ease;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 70%);
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+}
+
+
+
+
 
 .container {
     width: 400px;
@@ -36,9 +78,259 @@ button {
     border-radius: 6px;
 }
 
+
+
+@keyframes rewardPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    30% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -80%) scale(0.7);
+    }
+}
+
+
+.habit-card {
+    background: rgba(20, 20, 35, 0.6);
+    border-radius: 18px;
+    padding: 18px;
+    margin: 15px 0;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    transition: 0.3s ease;
+}
+
+.habit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.65);
+}
+
+.habit-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.habit-icon-svg {
+    width: 26px;
+    height: 26px;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+}
+
+.habit-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.habit-details {
+    margin-top: 6px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.streak-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.streak-svg {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
+}
+
+/* Good / Bad color strips */
+.habit-good {
+    border-left: 5px solid #4ade80;
+}
+
+.habit-bad {
+    border-left: 5px solid #f87171;
+}
+
+
+
+.complete-btn:hover {
+    transform: scale(1.05);
+    background: #005fcc;
+}
+
+
+/* @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+} */
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+
+@keyframes auroraFlow {
+    0%   { background-position: 0% 50%; }
+    20%  { background-position: 50% 0%; }
+    40%  { background-position: 100% 50%; }
+    60%  { background-position: 50% 100%; }
+    80%  { background-position: 0% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.coin-count {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffd966; /* warm gold */
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+    margin-top: 8px;
+}
+
+
+.coin-icon {
+    width: 40px;
+    height: 40px;
+    animation: coinSpin 1.8s linear infinite;
+}
+
+@keyframes coinSpin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes coinPop {
+    0% { transform: scale(1); filter: drop-shadow(0 0 4px gold); }
+    40% { transform: scale(1.4); filter: drop-shadow(0 0 20px yellow); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 4px gold); }
+}
+
+
+.coin-icon {
+    width: 40px;
+    height: 40px;
+    animation: coinGlow 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px gold);
+}
+
+/* Calm breathing glow effect */
+@keyframes coinGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 4px gold); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 12px gold); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 4px gold); }
+}
+
+
+/* .habit-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+} */
+
+
+/* Button Row */
+.habit-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+}
+
+/* Base button style (shared for all three) */
+.habit-btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.25s ease;
+    color: white;
+}
+
+/* COMPLETE BUTTON (Blue) */
 .complete-btn {
     background: #007bff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    margin-left: 20px;
 }
+.complete-btn:hover {
+    background: #005fcc;
+    transform: scale(1.05);
+}
+
+/* EDIT BUTTON (Yellow) */
+.edit-btn {
+    background: #facc15;
+    color: black;
+}
+.edit-btn:hover {
+    background: #eab308;
+    transform: scale(1.05);
+}
+
+/* DELETE BUTTON (Red) */
+.delete-btn {
+    background: #ef4444;
+}
+.delete-btn:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+.complete-btn:disabled {
+    background: #4b5563;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+}
+
+/* Floating reward animation container */
+.reward-animation {
+    position: fixed;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    animation: floatUp 1.4s ease-out forwards;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Flex layout for coin + text */
+.reward-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Spinning coin */
+.reward-coin {
+    width: 32px;
+    height: 32px;
+    animation: spinCoin 1.4s ease-out;
+    filter: drop-shadow(0px 0px 6px rgba(255, 215, 0, 0.8));
+}
+
+/* Floating reward text */
+.reward-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffd84d; 
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.8);
+}
+
+/* Coin spin animation */
+@keyframes spinCoin {
+    0% { transform: rotateY(0deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.4); }
+    100% { transform: rotateY(360deg) scale(1); }
+}
+
+/* Float upwards animation */
+@keyframes floatUp {
+    0% { opacity: 1; transform: translate(-50%, 20px); }
+    100% { opacity: 0; transform: translate(-50%, -80px); }
+}
+
+
