@@ -1,0 +1,76 @@
+from fastapi import APIRouter
+from sqlmodel import Session, select
+from ..database import engine
+from ..models import User, Habit
+
+router = APIRouter()
+
+@router.post("/add")
+def add_habit(username: str, habit_name: str, habit_type: str = "good"):
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.username == username)).first()
+        if not user:
+            return {"error": "User not found"}
+
+        habit = Habit(
+            user_id=user.id,
+            name=habit_name,
+            type=habit_type
+        )
+        session.add(habit)
+        session.commit()
+        session.refresh(habit)
+
+        return {"message": "Habit added", "habit": habit}
+
+
+
+from datetime import date
+from ..utils.points import calculate_points
+
+
+@router.post("/complete")
+def complete_habit(habit_id: int):
+    with Session(engine) as session:
+        habit = session.get(Habit, habit_id)
+        if not habit:
+            return {"error": "Habit not found"}
+
+        user = session.get(User, habit.user_id)
+
+        today = date.today()
+
+        # NEW DAY = increase streak
+        if habit.last_completed != today:
+            habit.streak += 1
+
+        # Update last completed date
+        habit.last_completed = today
+
+        # Calculate reward
+        reward = calculate_points(habit.streak)
+        user.coins += reward
+
+        # Save changes
+        session.add(habit)
+        session.add(user)
+        session.commit()
+
+        return {
+            "message": "Habit completed!",
+            "habit_id": habit.id,
+            "new_streak": habit.streak,
+            "reward": reward,
+            "total_coins": user.coins
+        }
+
+@router.get("/list")
+def list_habits(username: str):
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.username == username)).first()
+        if not user:
+            return {"error": "User not found"}
+
+        habits = session.exec(select(Habit).where(Habit.user_id == user.id)).all()
+
+        return {"habits": habits}

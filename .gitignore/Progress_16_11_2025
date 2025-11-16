@@ -1,0 +1,216 @@
+
+# 📘 HABIT ARENA — DEVELOPMENT WORKFLOW & PROGRESS GUIDE
+
+This guide covers all essential commands and URLs required to **run, test, reset, and explore** the Habit Arena project during development.
+
+---
+
+# 🚀 1. Starting the Backend (FastAPI)
+
+### **Commands (run from `/backend` folder)**
+
+#### **Activate Virtual Environment**
+
+**Windows:**
+
+```sh
+habit_arena_venv\Scripts\activate
+```
+
+**Mac/Linux:**
+
+```sh
+source habit_arena_venv/bin/activate
+```
+
+#### **Start Backend Server**
+
+```sh
+uvicorn app.main:app --reload
+```
+
+### **Backend will run at:**
+
+👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+
+### **API Documentation (Swagger UI):**
+
+👉 **[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)**
+
+---
+
+# 🌐 2. Starting the Frontend (Static HTML/JS)
+
+### **Commands (run from `/frontend` folder)**
+
+```sh
+python -m http.server 3000
+```
+
+### **Frontend will run at:**
+
+👉 **[http://127.0.0.1:3000](http://127.0.0.1:3000)**
+
+---
+
+# 🧭 3. How to Reach Each Page
+
+Here are the links to open Habit Arena in your browser:
+
+### **Login Page**
+
+👉 **[http://127.0.0.1:3000/login.html](http://127.0.0.1:3000/login.html)**
+
+### **Dashboard Page (after login)**
+
+👉 **[http://127.0.0.1:3000/dashboard.html](http://127.0.0.1:3000/dashboard.html)**
+
+---
+
+# 🔌 4. Backend API Endpoints (Useful for Testing)
+
+### **Backend Root**
+
+```
+http://127.0.0.1:8000/
+```
+
+### **API Docs (USE THIS TO TEST BACKEND MANUALLY)**
+
+```
+http://127.0.0.1:8000/docs
+```
+
+### **Endpoints Available**
+
+| Feature          | Method | URL                |
+| ---------------- | ------ | ------------------ |
+| Register User    | POST   | `/users/register`  |
+| Add Habit        | POST   | `/habits/add`      |
+| List User Habits | GET    | `/habits/list`     |
+| Complete Habit   | POST   | `/habits/complete` |
+| Leaderboard      | GET    | `/leaderboard/`    |
+
+---
+
+# 🗑️ 5. Resetting / Recreating the Database (IMPORTANT)
+
+You must reset the database when:
+
+* You modify `models.py`
+* Add new tables
+* Add new fields
+* Change column types
+
+### **Commands (run from `/backend` folder)**
+
+#### **Delete Existing SQLite DB File**
+
+```sh
+del habit_arena.db            # Windows
+```
+
+or
+
+```sh
+Remove-Item habit_arena.db -Force
+```
+
+#### **Start Backend Again**
+
+```sh
+uvicorn app.main:app --reload
+```
+
+A new database will be created automatically.
+
+---
+
+# 📂 6. Important File Structure Overview
+
+### **Backend: (`backend/app/`)**
+
+* `main.py` → FastAPI application, router setup
+* `models.py` → User & Habit database models
+* `database.py` → SQLite engine & initialization
+* `routers/users.py` → Register user
+* `routers/habits.py` → Add habit, list habits, complete habits
+* `routers/leaderboard.py` → Leaderboard rankings
+* `utils/points.py` → Points & rewards logic
+
+### **Frontend: (`frontend/`)**
+
+* `login.html` → User login (auto-registers)
+* `dashboard.html` → Habit list, add habits, complete habits
+* `style.css` → UI styling
+* `script.js` → All API calls & UI logic
+
+---
+
+# 🎮 7. How to Test the App Manually (Recommended)
+
+### **Login Flow**
+
+1. Open [http://127.0.0.1:3000/login.html](http://127.0.0.1:3000/login.html)
+2. Enter username
+3. Click Login → redirects to dashboard
+
+### **Dashboard Actions**
+
+* Add new habits
+* View all habits
+* Complete habits
+* See streak increase
+* Earn coins
+
+### **Leaderboard Test**
+
+Open:
+
+```
+http://127.0.0.1:8000/leaderboard/
+```
+
+### **Multi-User Test**
+
+* Use Chrome (User A)
+* Use Incognito (User B)
+* Compare leaderboard
+
+---
+
+# 🎉 8. Summary of All Key Commands
+
+### Start Backend
+
+```sh
+cd backend
+habit_arena_venv\Scripts\activate
+uvicorn app.main:app --reload
+```
+
+### Start Frontend
+
+```sh
+cd frontend
+python -m http.server 3000
+```
+
+### Reset Database
+
+```sh
+cd backend
+del habit_arena.db
+uvicorn app.main:app --reload
+```
+
+### Open UI
+
+```
+http://127.0.0.1:3000/login.html
+http://127.0.0.1:3000/dashboard.html
+```
+
+---
+
+

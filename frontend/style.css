@@ -1,0 +1,44 @@
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    margin: 0;
+}
+
+.container {
+    width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+input, select {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    background: #4caf50;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.habit-box {
+    background: #222;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.complete-btn {
+    background: #007bff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-left: 20px;
+}

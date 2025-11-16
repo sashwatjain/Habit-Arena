@@ -1,0 +1,27 @@
+habit-arena/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   ├── routers/
+│   │   │   ├── users.py
+│   │   │   ├── habits.py
+│   │   │   ├── leaderboard.py
+│   │   │   └── challenges.py
+│   │   └── utils/
+│   │       ├── points.py
+│   │       └── auth.py
+│   │
+│   ├── requirements.txt
+│   └── README.md
+│
+├── frontend/
+│   │── dashboard.html
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│
+└── README.md
