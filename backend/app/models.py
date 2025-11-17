@@ -4,9 +4,11 @@ from typing import Optional
 
 
 class User(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    username: str
+    id: int | None = Field(default=None, primary_key=True)
+    username: str = Field(index=True, unique=True)
+    password_hash: str  # NEW
     coins: int = 0
+
 
 
 class Habit(SQLModel, table=True):

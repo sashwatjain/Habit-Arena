@@ -315,3 +315,42 @@ if (window.location.pathname.includes("leaderboard.html")) {
     // Optional: Auto refresh every 30 seconds
     setInterval(loadLeaderboard, 30000);
 }
+
+
+function login() {
+    const username = document.getElementById("usernameInput").value;
+    const password = document.getElementById("passwordInput").value;
+
+    fetch(`${API_BASE}/users/login?username=${username}&password=${password}`, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        localStorage.setItem("username", username);
+        window.location.href = "dashboard.html";
+    });
+}
+
+
+function register() {
+    const username = document.getElementById("regUser").value;
+    const password = document.getElementById("regPass").value;
+
+    fetch(`${API_BASE}/users/register?username=${username}&password=${password}`, {
+        method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        alert("Registered! You can now log in.");
+    });
+}

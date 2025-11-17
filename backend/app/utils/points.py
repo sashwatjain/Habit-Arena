@@ -6,9 +6,9 @@ def calculate_points(habit_type: str, streak: int) -> int:
     - Streak increases reward
     """
     base_good = 10
-    base_bad = -5
+    base_bad = -8
 
     if habit_type == "good":
         return base_good + (streak * 2)  # increasing reward
     else:
-        return base_bad - (streak * 1)  # increasing penalty
+        return base_bad - (streak * 5)  # increasing penalty
