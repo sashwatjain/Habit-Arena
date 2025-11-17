@@ -2,167 +2,154 @@
 <html>
 <head>
     <title>Habit Arena - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #0d0f14, #1a1c23, #14161d);
+            background: linear-gradient(135deg, #0b0f1a, #111827, #1f2937);
             background-size: 300% 300%;
-            animation: bgFloat 12s ease infinite;
-            font-family: "Poppins", sans-serif;
+            animation: bgMove 12s ease-in-out infinite;
         }
 
-        @keyframes bgFloat {
+        @keyframes bgMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 40px;
-            border-radius: 22px;
-            backdrop-filter: blur(12px);
+        .login-box {
             width: 350px;
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
             text-align: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.4);
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
         }
 
-        .login-card h1 {
-            color: #ffffff;
+        h1 {
+            font-weight: 700;
+            color: #fff;
             margin-bottom: 10px;
-            font-size: 32px;
-            letter-spacing: 2px;
+            font-size: 28px;
+            letter-spacing: 1px;
         }
 
-        .login-card h2 {
+        .subtitle {
             color: #cbd5e1;
             margin-bottom: 25px;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 14px;
         }
 
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 14px 12px 40px;
-            border-radius: 12px;
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
             border: none;
-            outline: none;
             font-size: 15px;
-            background: rgba(255,255,255,0.10);
-            color: #ffffff;
+            outline: none;
         }
 
-        .input-group svg {
+        .password-box {
+            width: 90%;
+            position: relative;
+            margin: auto;
+        }
+
+        .password-box input {
+            width: 100%;
+        }
+
+        .toggle-eye {
             position: absolute;
-            top: 50%;
-            left: 12px;
-            transform: translateY(-50%);
-            opacity: 0.8;
+            right: 12px;
+            top: 13px;
+            width: 20px;
+            cursor: pointer;
+            opacity: 0.7;
         }
 
         button {
-            width: 100%;
+            width: 90%;
             padding: 12px;
+            margin-top: 15px;
             border-radius: 12px;
             border: none;
+            background: linear-gradient(135deg, #4f46e5, #6366f1, #818cf8);
+            color: #fff;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 8px;
-            background: #3b82f6;
-            color: white;
             transition: 0.3s;
         }
 
         button:hover {
-            background: #2563eb;
-            transform: scale(1.03);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #6366f1, #818cf8, #a5b4fc);
         }
 
-        .register-box {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .register-box h3 {
+        .register-link {
+            margin-top: 15px;
+            font-size: 14px;
             color: #cbd5e1;
-            font-size: 15px;
-            margin-bottom: 12px;
         }
 
-        .register-box button {
-            background: #10b981;
-        }
-
-        .register-box button:hover {
-            background: #059669;
+        .register-link span {
+            color: #818cf8;
+            cursor: pointer;
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
+    <audio id="bgMusic" src="assets/sounds/background-music.mp3" loop></audio>
 
-<div class="login-card">
+    <div class="login-box">
+        <div class="logo-wrapper">
+        <img src="assets/habit-arena-logo.svg" id="arenaLogo" class="arena-logo" alt="Habit Arena logo">
+        </div>
 
-    <h1>HABIT ARENA</h1>
-    <h2>Login to continue</h2>
+        <div class="login-subtitle">Gamify your life. Build legendary habits.</div>
 
-    <!-- Username Input -->
-    <div class="input-group">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#cbd5e1">
-            <path d="M12 12c2.7 0 5-2.3 
-            5-5s-2.3-5-5-5-5 2.3-5 
-            5 2.3 5 5 5zm0 2c-3.3 0-10 
-            1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
-        </svg>
         <input id="usernameInput" type="text" placeholder="Enter username">
-    </div>
-
-    <!-- Password Input -->
-    <div class="input-group">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#cbd5e1">
-            <path d="M17 9V7c0-2.8-2.2-5-5-5S7 
-            4.2 7 7v2H5v14h14V9h-2zm-8 
-            0V7c0-1.7 1.3-3 3-3s3 
-            1.3 3 3v2H9zm3 9c-1.1 
-            0-2-.9-2-2s.9-2 2-2 
-            2 .9 2 2-.9 2-2 2z"/>
-        </svg>
         <input id="passwordInput" type="password" placeholder="Enter password">
-    </div>
-
-    <button onclick="login()">Login</button>
-
-    <!-- Register Section -->
-    <div class="register-box">
-        <h3>New user? Create an account</h3>
-
-        <div class="input-group">
-            <input id="regUser" type="text" placeholder="Choose username">
+        <div class="input-wrapper">
+            <img src="assets/eye.svg" id="toggleEye" class="toggle-eye">
         </div>
 
-        <div class="input-group">
-            <input id="regPass" type="password" placeholder="Choose password">
-        </div>
 
-        <button onclick="register()">Register</button>
+        <button onclick="login()">Login</button>
+        
+        <div class="register-link">
+            New here? <span onclick="register()">Create account</span>
+        </div>
     </div>
 
-</div>
+    <script src="script.js"></script>
 
-<script src="script.js"></script>
+    <script>
+        // Toggles password visibility
+        const eye = document.getElementById("toggleEye");
+        const pass = document.getElementById("passwordInput");
+
+        eye.onclick = () => {
+            if (pass.type === "password") {
+                pass.type = "text";
+            } else {
+                pass.type = "password";
+            }
+        };
+    </script>
+
 </body>
 </html>

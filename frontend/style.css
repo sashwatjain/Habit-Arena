@@ -449,3 +449,134 @@ body {
 .negative-coin {
     animation: negShake 0.3s ease;
 }
+
+
+/* ---- Login card base (replace existing card rules) ---- */
+.login-card, .login-box {
+  width: 380px;
+  padding: 34px 32px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  margin: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo wrapper keeps logo and small label nicely centered */
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+/* logo image sizing */
+.arena-logo {
+  width: 240px;          /* smaller so it doesn't dominate */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.45)) drop-shadow(0 0 10px rgba(255,200,0,0.12));
+  animation: logoBreath 4s ease-in-out infinite;
+}
+@keyframes logoBreath {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* small label next to or under logo (if you want to show HA and ARENA) */
+.logo-small-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #e6eefc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+/* Big app title */
+.login-title {
+  font-size: 28px;
+  color: #ffffff;
+  margin: 10px 0 6px;
+  line-height: 1;
+}
+
+/* subtitle */
+.login-subtitle {
+  font-size: 13px;
+  color: #aeb9c8;
+  margin-bottom: 20px;
+}
+
+/* Inputs container & style */
+.input-wrapper, .input-group {
+  width: 100%;
+  margin: 8px 0;
+  position: relative;
+}
+
+.input-wrapper input, .input-group input {
+  width: calc(100% - 0px);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* space for eye icon inside the input */
+.input-wrapper .toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 4;
+}
+
+/* login button */
+.button-primary {
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg,#6366f1,#7c3aed);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .18s ease, filter .18s ease;
+}
+.button-primary:hover { transform: translateY(-2px); filter: brightness(1.03); }
+
+/* tiny register line */
+.register-line {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #aeb9c8;
+}
+.register-line .action { color: #9aa8ff; cursor: pointer; font-weight:700; }
+
+/* small adjustments for mobile/smaller screens */
+@media (max-width:420px){
+  .login-card { width: 92%; padding: 22px; }
+  .arena-logo { width: 72px; }
+  .login-title { font-size: 24px; }
+}

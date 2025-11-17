@@ -1,11 +1,19 @@
 const API_BASE = "http://127.0.0.1:8000";   // your backend
 // Coin sound effect
 const coinSound = new Audio("assets/sounds/coin.mp3");
-coinSound.volume = 0.6;  // not too loud
+coinSound.volume = 0.8;  // not too loud
 
 // Sad coin drop sound
 const sadCoinSound = new Audio("assets/sounds/sad_coin.mp3");
-sadCoinSound.volume = 0.5;
+sadCoinSound.volume = 0.8;
+
+// 🔊 Global Click Sound
+const clickSound = new Audio("assets/sounds/click.mp3");
+clickSound.volume = 0.4; // adjust loudness
+
+
+const hoverSound = new Audio("assets/sounds/hover.mp3");
+hoverSound.volume = 0.4;
 
 
 
@@ -317,40 +325,114 @@ if (window.location.pathname.includes("leaderboard.html")) {
 }
 
 
+// LOGIN
 function login() {
-    const username = document.getElementById("usernameInput").value;
-    const password = document.getElementById("passwordInput").value;
+    const username = document.getElementById("usernameInput").value.trim();
+    const password = document.getElementById("passwordInput").value.trim();
+
+    if (!username || !password) {
+        alert("Please enter username and password.");
+        return;
+    }
 
     fetch(`${API_BASE}/users/login?username=${username}&password=${password}`, {
         method: "POST"
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-            return;
-        }
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
 
-        localStorage.setItem("username", username);
-        window.location.href = "dashboard.html";
-    });
+            localStorage.setItem("username", username);
+            window.location.href = "dashboard.html";
+        });
 }
 
 
+// REGISTER
 function register() {
-    const username = document.getElementById("regUser").value;
-    const password = document.getElementById("regPass").value;
+    const username = document.getElementById("usernameInput").value.trim();
+    const password = document.getElementById("passwordInput").value.trim();
+
+    if (!username || !password) {
+        alert("Enter username & password first!");
+        return;
+    }
 
     fetch(`${API_BASE}/users/register?username=${username}&password=${password}`, {
         method: "POST"
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-            return;
-        }
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
 
-        alert("Registered! You can now log in.");
-    });
+            alert("Account created! You can now login.");
+        });
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    const logo = document.getElementById("arenaLogo");
+    const sound = document.getElementById("logoSound");
+
+    if (logo && sound) {
+        logo.addEventListener("mouseenter", () => {
+            sound.currentTime = 0;
+            sound.play();
+        });
+    }
+});
+
+
+function enableBackgroundMusic() {
+    const music = document.getElementById("bgMusic");
+    if (!music) return;
+
+    music.volume = 0.05; // soft background
+    music.play().catch(() => { /* Browser blocked autoplay, waiting for click */ });
+}
+
+// First user interaction unlocks audio
+function activateMusicUnlock() {
+    const music = document.getElementById("bgMusic");
+    if (!music) return;
+
+    music.play().catch(() => { /* ignore */ });
+    document.removeEventListener('click', activateMusicUnlock);
+}
+
+// On page load
+window.addEventListener("DOMContentLoaded", () => {
+    enableBackgroundMusic();
+    document.addEventListener("click", activateMusicUnlock, { once: true });
+});
+
+document.addEventListener("click", (e) => {
+    if (e.target.closest("button")) {
+        clickSound.currentTime = 0;
+        clickSound.play();
+    }
+});
+
+let lastClick = 0;
+
+document.addEventListener("click", (e) => {
+    if (!e.target.closest("button")) return;
+
+    const now = Date.now();
+    if (now - lastClick < 120) return; // 120ms cooldown
+
+    lastClick = now;
+    clickSound.currentTime = 0;
+    clickSound.play();
+});
+document.addEventListener("mouseenter", (e) => {
+    if (e.target.closest("button")) {
+        hoverSound.currentTime = 0;
+        hoverSound.play();
+    }
+}, true);
