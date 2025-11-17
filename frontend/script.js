@@ -28,6 +28,10 @@ function login() {
     })
     .then(res => res.json())
     .then(data => {
+        if (data.error) {
+            showError(data.error);   // ⬅️ USE POPUP
+            return;
+        }
         localStorage.setItem("username", username);
         window.location.href = "dashboard.html";
     });
@@ -102,13 +106,13 @@ function addHabit() {
     // SAFETY CHECKS
     if (!nameField) {
         console.error("ERROR: habitInput not found in HTML");
-        alert("Your habit input field is missing.");
+        showError("Habit input field is missing.");
         return;
     }
 
     if (!typeField) {
         console.error("ERROR: habitType not found in HTML");
-        alert("Habit type dropdown is missing.");
+        showError("Habit type dropdown is missing.");
         return;
     }
 
@@ -117,7 +121,7 @@ function addHabit() {
     const username = localStorage.getItem("username");
 
     if (!habitName.trim()) {
-        alert("Please enter a habit name.");
+        showError("Please enter a habit name.");  // ⬅️ FIXED
         return;
     }
 
@@ -125,9 +129,18 @@ function addHabit() {
         method: "POST"
     })
     .then(res => res.json())
-    .then(() => {
-        nameField.value = "";
+    .then(data => {
+        if (data.error) {
+            showError(data.error);   // ⬅️ POPUP TRIGGER
+            return;
+        }
+
         loadHabits();
+        nameField.value = "";   // ⬅️ Clear input
+    })
+    .catch(err => {
+        showError("Unable to add habit. Check your server.");
+        console.error(err);
     });
 }
 
@@ -159,6 +172,11 @@ function completeHabit(id) {
             showRewardAnimation(data.reward);
         } else {
             showNegativeRewardAnimation(data.reward); // negative reward
+        }
+
+        if (data.error) {
+            showError(data.error);  // ⬅️ STOP + SHOW ERROR
+            return;
         }
 
         
@@ -252,7 +270,8 @@ function editHabit(id) {
     .then(res => res.json())
     .then(() => {
         loadHabits();
-    });
+    }
+);
 }
 
 // DELETE HABIT
@@ -436,3 +455,19 @@ document.addEventListener("mouseenter", (e) => {
         hoverSound.play();
     }
 }, true);
+
+// BEAUTIFUL ERROR POPUP
+function showError(message) {
+    const popup = document.getElementById("errorPopup");
+
+    popup.innerHTML = `
+        <img src="assets/error.svg" class="error-icon">
+        <span>${message}</span>
+    `;
+
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2500);
+}

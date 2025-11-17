@@ -13,6 +13,20 @@ def add_habit(username: str, habit_name: str, habit_type: str = "good"):
         if not user:
             return {"error": "User not found"}
 
+        # 🔥 Count existing habits
+        all_habits = session.exec(select(Habit).where(Habit.user_id == user.id)).all()
+
+        # 1️⃣ Limit total habits to 10
+        if len(all_habits) >= 10:
+            return {"error": "You can only have **10 habits maximum**."}
+
+        # 2️⃣ Limit bad habits to 2
+        if habit_type == "bad":
+            bad_count = sum(1 for h in all_habits if h.type == "bad")
+            if bad_count >= 2:
+                return {"error": "You can only add **2 bad habits maximum**."}
+
+        # ✔ If limits OK → add habit
         habit = Habit(
             user_id=user.id,
             name=habit_name,
@@ -23,6 +37,7 @@ def add_habit(username: str, habit_name: str, habit_type: str = "good"):
         session.refresh(habit)
 
         return {"message": "Habit added", "habit": habit}
+
 
 
 

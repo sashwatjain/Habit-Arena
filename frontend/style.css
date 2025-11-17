@@ -580,3 +580,37 @@ body {
   .arena-logo { width: 72px; }
   .login-title { font-size: 24px; }
 }
+
+/* ERROR POPUP */
+.error-popup {
+    position: fixed;
+    bottom: -80px; /* Hidden off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 60, 60, 0.85);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(255, 50, 50, 0.6);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 9999;
+}
+
+.error-popup.show {
+    bottom: 30px;
+    opacity: 1;
+}
+
+/* Error Icon */
+.error-icon {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 0 4px rgba(255, 60, 60, 0.9));
+}
