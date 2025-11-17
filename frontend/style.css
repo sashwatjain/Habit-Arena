@@ -334,3 +334,118 @@ body {
 }
 
 
+.lb-coins {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.rank-icon svg {
+    vertical-align: middle;
+}
+
+
+.leaderboard-btn {
+    margin-top: 10px;
+    background: #8b5cf6;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    color: white;
+    transition: 0.3s;
+}
+
+.leaderboard-btn:hover {
+    transform: scale(1.05);
+    background: #7c3aed;
+}
+
+.back-btn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #374151;
+    color: white;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: scale(1.06);
+    background: #4b5563;
+}
+
+.leaderboard-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.leaderboard-btn:hover svg {
+    transform: scale(1.15);
+}
+
+
+/* ❌ Negative reward animation (sad coin drop) */
+.negative-reward-animation {
+    position: fixed;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+    animation: negFall 1.4s ease-out forwards;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.negative-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.15); /* red transparent glass */
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+}
+
+.negative-coin {
+    width: 26px;
+    height: 26px;
+    opacity: 0.8;
+    filter: grayscale(50%) brightness(75%);
+}
+
+.negative-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ef4444; /* bright red */
+    text-shadow: 0 0 4px rgba(239, 68, 68, 0.4);
+}
+
+/* Falling + fading animation */
+@keyframes negFall {
+    0% {
+        transform: translate(-50%, -60%) scale(1);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    60% {
+        transform: translate(-50%, 0%) scale(0.92);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(-50%, 30%) scale(0.85);
+        opacity: 0;
+    }
+}
+
+@keyframes negShake {
+    0%, 100% { transform: translate(0,0); }
+    25% { transform: translate(-2px, 1px); }
+    50% { transform: translate(2px, -1px); }
+    75% { transform: translate(-1px, 2px); }
+}
+
+.negative-coin {
+    animation: negShake 0.3s ease;
+}

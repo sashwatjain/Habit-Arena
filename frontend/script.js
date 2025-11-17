@@ -210,6 +210,11 @@ function showRewardAnimation(amount) {
 
 // SHOW NEGATIVE REWARD ANIMATION
 function showNegativeRewardAnimation(amount) {
+    // Play sad coin drop sound
+    if (sadCoinSound) {
+        sadCoinSound.currentTime = 0;
+        sadCoinSound.play();
+    }
     const anim = document.createElement("div");
     anim.className = "negative-reward-animation";
 
@@ -221,12 +226,6 @@ function showNegativeRewardAnimation(amount) {
     `;
 
     document.body.appendChild(anim);
-
-    // Play sad coin drop sound
-    if (sadCoinSound) {
-        sadCoinSound.currentTime = 0;
-        sadCoinSound.play();
-    }
 
     setTimeout(() => anim.remove(), 1500);
 }
@@ -259,4 +258,60 @@ function deleteHabit(id) {
     .then(() => {
         loadHabits();
     });
+}
+
+
+function loadLeaderboard() {
+    fetch(`${API_BASE}/leaderboard`)
+        .then(res => res.json())
+        .then(data => {
+            const box = document.getElementById("leaderboardList");
+            if (!box) return;
+
+            box.innerHTML = "";
+
+            const rankIcons = {
+                0: `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#facc15">
+                        <path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.32L12 14.77l-4.78 2.53.91-5.32L4.27 7.62l5.34-.78z"/>
+                    </svg>
+                `, // GOLD
+                1: `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#d1d5db">
+                        <path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.32L12 14.77l-4.78 2.53.91-5.32L4.27 7.62l5.34-.78z"/>
+                    </svg>
+                `, // SILVER
+                2: `
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#f97316">
+                        <path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.32L12 14.77l-4.78 2.53.91-5.32L4.27 7.62l5.34-.78z"/>
+                    </svg>
+                `, // BRONZE
+                default: `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#9ca3af">
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                ` // GREY RANK ICON
+            };
+
+            data.forEach((user, index) => {
+                const icon = rankIcons[index] || rankIcons.default;
+
+                box.innerHTML += `
+                    <div class="leader-card">
+                        <span class="rank-icon">${icon}</span>
+                        <span>${user.username}</span>
+                        <span class="lb-coins">${user.coins} 
+                            <img src="assets/coin.svg" width="18" style="vertical-align: middle;">
+                        </span>
+                    </div>
+                `;
+            });
+        });
+}
+
+if (window.location.pathname.includes("leaderboard.html")) {
+    loadLeaderboard();
+
+    // Optional: Auto refresh every 30 seconds
+    setInterval(loadLeaderboard, 30000);
 }
