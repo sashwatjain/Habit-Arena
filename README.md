@@ -1,74 +1,201 @@
+# 🏆 **FINAL README.md WITH SVG LOGO**
 
-# 🌟 Habit Arena — A Gamified Habit-Tracking Experience
+```md
+<p align="center">
+  <img src="frontend/assets/logo.svg" alt="Habit Arena Logo" width="220"/>
+</p>
 
-**Habit Arena** is a personal project I am building to learn full-stack development while creating something I can use every day.
-The goal is to turn self-improvement into a fun, game-like experience where completing real habits earns rewards, streaks, and progress on a global leaderboard.
+<h1 align="center">🌟 HABIT ARENA 🌟</h1>
+<h3 align="center">“Turn your habits into a game. Win your life like a warrior.”</h3>
 
-> 🚧 **Project Status:** Active Development
-> This project is currently a work-in-progress. I am adding features, improving the UI/UX, and refining the backend as I learn.
-
----
-
-## 🚀 Features (So Far)
-
-### 🏗 Backend (FastAPI)
-
-* User registration & login (JWT Auth)
-* Add and manage habits
-* Complete habits → earn coins & streak boosts
-* Leaderboard sorted by total coins
-* Persistent database with SQLAlchemy
-* Clean, modular API structure
-
-### 🎨 Frontend (React / Next.js)
-
-* Login screen
-* Habit dashboard
-* Add new habits
-* Complete habits with instant UI updates
-* Mobile-friendly layout
-
-### 🎮 Game Mechanics
-
-* Completing a habit gives **+10 coins**
-* Daily streaks for each habit
-* Missing a day resets the streak
-* Compete with others (or yourself) on the leaderboard
+<p align="center">
+Inspired by <strong>Atomic Habits</strong> by <em>James Clear</em>
+</p>
 
 ---
 
-## 📌 Goals of This Project
-
-* Learn backend architecture (FastAPI + SQLAlchemy)
-* Improve frontend skills (React/Next.js)
-* Build a habit-tracking system I can use daily
-* Experiment with gamification design
-* Keep expanding features as I learn more
+🚀 **LIVE GAME:** https://thehabitarena.netlify.app/  
+🎮 **Version:** V1 (Public Preview)  
+🧠 **Tech Stack:** FastAPI + SQLModel + Vanilla JS + Netlify + Render
 
 ---
 
-## 🛠 Tech Stack
+## 🧩 **What is Habit Arena?**
 
-* **Backend:** FastAPI, Python, SQLAlchemy
-* **Frontend:** React / Next.js
-* **Database:** SQLite (dev), PostgreSQL (prod planned)
-* **Auth:** JWT Tokens
+Habit Arena is a **multiplayer habit-building game** where players:  
+- Create good habits ⚔️  
+- Track their consistency 🔥  
+- Earn coins for completing habits 💰  
+- Lose coins for bad habits 😢  
+- Maintain streaks for bonus rewards 🔥💥  
+- Climb the **Global Leaderboard** 🏆  
+- Build discipline like a true warrior  
 
----
-
-## 🔮 Upcoming Features
-
-* User avatars
-* Levels, XP, and skill trees
-* Rewards shop (spend coins)
-* Daily quests / challenges
-* Notifications & reminders
-* Better UI animations
+A blend of **Atomic Habits** + **Casual RPG Game Design**, built entirely with Python + JS.
 
 ---
 
-## 🤝 Contributions
+## 🧪 **LIVE FEATURES (V1)**
 
-This is a personal learning project, but suggestions, ideas, and pull requests are welcome!
+### ✔️ **User System**
+- Username + password login  
+- Secure password hashing  
+- Persistent user data  
+- Background music + UI sound effects  
 
+### ✔️ **Habit System**
+- Add habits (limit: 10 per user)  
+- Max 2 bad habits  
+- Complete each habit once per day  
+- Daily streak logic  
+- Penalties for bad habits  
+- Animated reward & penalty effects  
+
+### ✔️ **Leaderboard**
+- Ranks sorted by coins  
+- SVG rank badges (gold, silver, bronze)  
+- Smooth animations  
+
+### ✔️ **UI & Experience**
+- Animated SVG logo  
+- Gradient dark theme  
+- Hover & click sound effects  
+- Beautiful error popups  
+- Smooth transitions  
+
+🎯 **V1 = Completely playable & addictive.**
+
+---
+
+## 🏗️ **Tech Stack**
+
+### 🖥️ Frontend
+- HTML5  
+- CSS3 (glassmorphism + gradients + animations)  
+- Vanilla JavaScript  
+- Animated SVGs  
+- Netlify Free Hosting  
+
+### ⚙️ Backend
+- FastAPI  
+- SQLModel  
+- SQLite (V1)  
+- Passlib bcrypt hashing  
+- CORS-enabled  
+- Render Free Tier Hosting  
+
+---
+
+## 🗂️ **Folder Structure**
+
+```
+
+habit-arena/
+│
+├── backend/
+│   ├── app/
+│   │   ├── routers/
+│   │   ├── utils/
+│   │   ├── database.py
+│   │   ├── main.py
+│   ├── requirements.txt
+│
+└── frontend/
+├── index.html
+├── dashboard.html
+├── leaderboard.html
+├── style.css
+├── script.js
+├── assets/
+├── logo.svg
+├── coin.svg
+├── sounds/
+
+````
+
+---
+
+## 🧪 **Run Locally**
+
+### Backend
+
+```bash
+cd backend
+python -m venv venv
+venv/Scripts/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+````
+
+### Frontend
+
+```bash
+cd frontend
+npx serve .
+```
+
+---
+
+## 📕 **Core Game Logic**
+
+### 🎁 Reward System
+
+```
+good habit  → +10 coins + streak bonus  
+bad habit   → -5 coins  
+streak bonus → +1 per day  
+```
+
+### ⏳ Daily Reset
+
+* Habits reset every midnight
+* Missing a day breaks streak
+
+### 🔐 Auth
+
+* Password hashing with bcrypt
+
+---
+
+## 🏆 **Upcoming Features (V2)**
+
+* ⚔️ 7-Day Challenge Arena
+* 👥 Friend system
+* 🛡️ Streak protection
+* 🛒 Shop (skins, boosters, troop packs)
+* 📱 Mobile app version
+* 🔄 Move DB to PostgreSQL
+* 🎨 Full UI redesign
+
+---
+
+## ⭐ Credits
+
+**Developed by:** Sashwat Jain
+**Inspired by:** *Atomic Habits* — James Clear
+Built with 💙, discipline, and creativity.
+
+---
+
+<p align="center">
+
+  <!-- Netlify -->
+  <img src="https://img.shields.io/badge/Hosted%20on-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" />
+
+  <!-- Render -->
+  <img src="https://img.shields.io/badge/Backend%20on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white" />
+
+  <!-- FastAPI -->
+  <img src="https://img.shields.io/badge/API-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+
+  <!-- Python -->
+  <img src="https://img.shields.io/badge/Backend-Python%203.11-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+
+  <!-- JavaScript -->
+  <img src="https://img.shields.io/badge/Frontend-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+
+  <!-- SQLModel -->
+  <img src="https://img.shields.io/badge/Database-SQLModel-4b8bbe?style=for-the-badge&logo=sqlite&logoColor=white" />
+
+</p>
 
