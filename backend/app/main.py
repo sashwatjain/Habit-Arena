@@ -23,6 +23,11 @@ def on_startup():
 def home():
     return {"message": "Welcome to HABIT ARENA API!"}
 
+@app.get("/healthz")
+def health():
+    return {"status": "ok"}
+
+
 # Routers (after CORS)
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(habits.router, prefix="/habits", tags=["Habits"])
