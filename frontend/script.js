@@ -433,43 +433,37 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element)) return;
+
     if (e.target.closest("button")) {
         clickSound.currentTime = 0;
         clickSound.play();
     }
 });
 
+
 let lastClick = 0;
 
 document.addEventListener("click", (e) => {
-    if (!e.target.closest("button")) return;
+    if (!(e.target instanceof Element)) return;
+
+    const btn = e.target.closest("button");
+    if (!btn) return;
 
     const now = Date.now();
-    if (now - lastClick < 120) return; // 120ms cooldown
+    if (now - lastClick < 120) return; // cooldown
 
     lastClick = now;
     clickSound.currentTime = 0;
     clickSound.play();
 });
+
+
 document.addEventListener("mouseenter", (e) => {
+    if (!(e.target instanceof Element)) return;
+
     if (e.target.closest("button")) {
         hoverSound.currentTime = 0;
         hoverSound.play();
     }
 }, true);
-
-// BEAUTIFUL ERROR POPUP
-function showError(message) {
-    const popup = document.getElementById("errorPopup");
-
-    popup.innerHTML = `
-        <img src="assets/error.svg" class="error-icon">
-        <span>${message}</span>
-    `;
-
-    popup.classList.add("show");
-
-    setTimeout(() => {
-        popup.classList.remove("show");
-    }, 2500);
-}

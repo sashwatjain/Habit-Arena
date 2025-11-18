@@ -8,7 +8,7 @@ app = FastAPI(title="HABIT ARENA API", version="0.1")
 # ⭐⭐⭐ CORS MUST BE ATTACHED BEFORE ANY ROUTERS ⭐⭐⭐
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # during development allow all
+    allow_origins=["https://thehabitarena.netlify.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
