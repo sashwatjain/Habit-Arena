@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from sqlmodel import Session, select
 from ..database import engine
 from ..models import User, Habit
+from datetime import date, timedelta
 
 router = APIRouter()
 
@@ -41,7 +42,6 @@ def add_habit(username: str, habit_name: str, habit_type: str = "good"):
 
 
 
-from datetime import date
 from ..utils.points import calculate_points
 
 
@@ -55,13 +55,23 @@ def complete_habit(habit_id: int):
         user = session.get(User, habit.user_id)
 
         today = date.today()
+        yesterday = today - timedelta(days=1)
 
-        # NEW DAY = increase streak
-        if habit.last_completed != today:
+        # First time completing the habit
+        if habit.last_completed is None:
+            habit.streak = 1
+
+        # If completed yesterday → continue streak
+        elif habit.last_completed == yesterday:
             habit.streak += 1
 
-        # Update last completed date
+        # If missed a day → reset streak
+        else:
+            habit.streak = 1
+
+        # Set last completed to today
         habit.last_completed = today
+
 
         # Calculate reward
         reward = calculate_points(habit.type, habit.streak)
