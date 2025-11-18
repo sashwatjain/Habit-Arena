@@ -58,18 +58,23 @@ function loadHabits() {
     fetch(`${API_BASE}/habits/list?username=${username}`)
         .then(res => res.json())
         .then(data => {
+
+            // ⭐ ERROR CHECK
+            if (data.error) {
+                showError(data.error);
+                return;
+            }
+
             const list = document.getElementById("habitList");
             list.innerHTML = "";
 
-            // ⬇⬇⬇ EXACT PLACE TO ADD THE BLOCK
+            // ⭐ SAFE: data.habits now guaranteed to exist
             data.habits.forEach(habit => {
 
-                // ⭐ MUST BE HERE BEFORE BUILDING CARD
                 const completedToday =
                     habit.last_completed &&
                     new Date(habit.last_completed).toDateString() === new Date().toDateString();
 
-                // ⭐ NOW build the card BELOW this line
                 const cardClass = habit.type === "good" ? "habit-good" : "habit-bad";
 
                 list.innerHTML += `
@@ -95,7 +100,8 @@ function loadHabits() {
                     </div>
                 `;
             });
-        });
+        })
+        .catch(err => console.error("LOAD HABITS ERROR:", err));
 }
 
 
