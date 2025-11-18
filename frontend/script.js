@@ -71,9 +71,16 @@ function loadHabits() {
             // ⭐ SAFE: data.habits now guaranteed to exist
             data.habits.forEach(habit => {
 
-                const completedToday =
-                    habit.last_completed &&
-                    new Date(habit.last_completed).toDateString() === new Date().toDateString();
+                // const completedToday =
+                //     habit.last_completed &&
+                //     new Date(habit.last_completed).toDateString() === new Date().toDateString();
+                const today = new Date().toISOString().split("T")[0];
+                const last = habit.last_completed
+                ? new Date(habit.last_completed).toISOString().split("T")[0]
+                : null;
+
+                const completedToday = last === today;
+
 
                 const cardClass = habit.type === "good" ? "habit-good" : "habit-bad";
 
