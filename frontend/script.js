@@ -1,4 +1,6 @@
-const API_BASE = "http://127.0.0.1:8000";   // your backend
+// const API_BASE = "http://127.0.0.1:8000";   // your backend
+const API_BASE = "https://habit-arena.onrender.com";
+
 // Coin sound effect
 const coinSound = new Audio("assets/sounds/coin.mp3");
 coinSound.volume = 0.8;  // not too loud
