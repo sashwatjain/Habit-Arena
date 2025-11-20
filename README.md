@@ -144,6 +144,7 @@ Built with 💙 discipline, creativity, and passion.
   <img src="https://img.shields.io/badge/Backend-Python%203.11-3776AB?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/Frontend-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/Database-SQLModel-4b8bbe?style=for-the-badge&logo=sqlite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Database-Host-4b8bbe?style=for-the-badge&logo=NeonTech&logoColor=white" />
 </p>
 
 
