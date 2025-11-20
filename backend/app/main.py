@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import create_db_and_tables
+from .database import init_db
 from .routers import users, habits, leaderboard
 
 app = FastAPI(title="HABIT ARENA API", version="0.1")
@@ -16,8 +16,8 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
-    create_db_and_tables()
-    # Use SQLModel’s standard function
+    init_db()
+
 
 @app.get("/")
 def home():
