@@ -1,9 +1,15 @@
 from sqlmodel import SQLModel, create_engine
+import os
 
-sqlite_file_name = "habit_arena.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+# Read PostgreSQL URL from environment variable
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(sqlite_url, echo=False)
+# Ensure PostgreSQL uses pooling & SSL
+engine = create_engine(
+    DATABASE_URL,
+    echo=True, 
+    connect_args={"sslmode": "require"}
+)
 
-def create_db_and_tables():
+def init_db():
     SQLModel.metadata.create_all(engine)
