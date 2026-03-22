@@ -9,6 +9,7 @@
 Inspired by <strong>Atomic Habits</strong> by <em>James Clear</em>
 </p>
 
+![Demo GIF](preview.gif)
 ---
 
 🚀 **LIVE GAME:** https://thehabitarena.netlify.app/  
